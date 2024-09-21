@@ -8,19 +8,18 @@ df = pd.read_csv('data_cuaca.csv')
 # Set style untuk seaborn agar grafik lebih estetis
 sns.set(style="whitegrid")
 
-# C. Analisis Data
-# 1. Menghitung Rata-rata Suhu dari Semua Kota
+# Menghitung Rata-rata Suhu dari Semua Kota
 average_temperature = df['temperature'].mean()
 print(f"Rata-rata suhu dari semua kota: {average_temperature:.2f} °C")  # Menggunakan format dua angka di belakang koma
 
-# 2. Menentukan Kota dengan Suhu Tertinggi dan Terendah
+# Menentukan Kota dengan Suhu Tertinggi dan Terendah
 max_temp_city = df.loc[df['temperature'].idxmax()]  # Kota dengan suhu tertinggi
 min_temp_city = df.loc[df['temperature'].idxmin()]  # Kota dengan suhu terendah
 
 print(f"Kota dengan suhu tertinggi: {max_temp_city['city']} dengan suhu {max_temp_city['temperature']} °C")
 print(f"Kota dengan suhu terendah: {min_temp_city['city']} dengan suhu {min_temp_city['temperature']} °C")
 
-# 3. Menganalisis Pola Cuaca yang Paling Sering Muncul
+# Menganalisis Pola Cuaca yang Paling Sering Muncul
 weather_counts = df['weather'].value_counts()  # Menghitung frekuensi setiap pola cuaca
 most_common_weather = weather_counts.idxmax()  # Menentukan pola cuaca yang paling sering muncul
 most_common_count = weather_counts.max()  # Jumlah kemunculan pola cuaca yang paling umum
@@ -29,7 +28,7 @@ print(f"Pola cuaca yang paling sering muncul: {most_common_weather} dengan jumla
 
 # Visualisasi Data
 
-# 1. Visualisasi Rata-rata Suhu Per Kota
+# Visualisasi Rata-rata Suhu Per Kota
 plt.figure(figsize=(10, 6))
 sns.barplot(x='city', y='temperature', data=df, estimator='mean', palette='Set2')
 plt.title("Rata-rata Suhu Per Kota")
@@ -38,7 +37,7 @@ plt.ylabel("Rata-rata Suhu (°C)")
 plt.xticks(rotation=45)
 plt.show()
 
-# 2. Visualisasi Suhu Tertinggi dan Terendah Per Kota
+# Visualisasi Suhu Tertinggi dan Terendah Per Kota
 plt.figure(figsize=(10, 6))
 # Mengambil data suhu tertinggi dan terendah
 temperature_summary = df[['city', 'temperature']].copy()
@@ -50,7 +49,7 @@ plt.ylabel("Kota")
 plt.legend(title='Status Suhu')
 plt.show()
 
-# 3. Visualisasi Pola Cuaca yang Paling Sering Muncul
+# Visualisasi Pola Cuaca yang Paling Sering Muncul
 plt.figure(figsize=(10, 6))
 # Menghitung frekuensi pola cuaca
 weather_counts = df['weather'].value_counts().reset_index()
